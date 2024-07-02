@@ -6,24 +6,14 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None:
-            return head
-        arr = []
-        n = ListNode()
-        firstHead = head
-        firstNode = n
-        while head:
-            arr.append(head.val)
-            head = head.next
-        length = len(arr)-1
-        while length > 0:
-            n.val = arr.pop()
-            n.next = ListNode()
-            n = n.next
-            length -= 1
-        if arr:
-            n.val = arr[0]
-        return firstNode
+        prev = None
+        current = head
+        while current:
+            next_node = current.next  # 다음 노드를 저장
+            current.next = prev  # 현재 노드의 next를 이전 노드로 변경
+            prev = current  # 이전 노드를 현재 노드로 변경
+            current = next_node  # 현재 노드를 다음 노드로 변경
+        return prev
             
         
             
