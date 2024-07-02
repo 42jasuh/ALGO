@@ -1,12 +1,7 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        dic = {}
-        for val in nums:
-            if val not in dic:
-                dic[val] = 1
-            else:
-                dic[val] += 1
-        for k, v in dic.items():
-            if v == 1:
-                return k
+        result = 0
+        for num in nums:
+            result ^= num  # XOR 연산을 사용
+        return result
         
