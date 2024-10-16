@@ -1,13 +1,25 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = [s[0]]
-        bracket_map = {')': '(', ']': '[', '}': '{'}
-        for i in range(1, len(s)):
-            if stack and s[i] in bracket_map and bracket_map[s[i]] == stack[-1]:
-                stack.pop()
-            else:
-                stack.append(s[i])
-        
+        dic_2 = {')': 1, '}': 1, ']': 1}
+        stack = []
+        for alpha in s:
+            stack.append(alpha)
+            try:
+                if alpha in dic_2 and stack != []:
+                    if alpha == ')' and stack[-2] == '(':
+                        stack.pop()
+                        stack.pop()
+                    elif alpha == '}' and stack[-2] == '{':
+                        stack.pop()
+                        stack.pop()
+                    elif alpha == ']' and stack[-2] == '[':
+                        stack.pop()
+                        stack.pop()
+            except:
+                pass
         if stack == []:
             return True
         return False
+                
+                    
+
