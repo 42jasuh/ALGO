@@ -1,12 +1,15 @@
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-        n = len(nums)
-        total = nums[0]
+    def maxSubArray(self, nums):
         answer = nums[0]
-        for i in range(1, n):
-            if nums[i] > total and total < 0:
-                total = nums[i]
-            else:
-                total += nums[i]
-            answer = max(answer, total)
-        return answer
+        maxAnswer = nums[0]
+        length = len(nums)
+
+        if length >= 2:
+            for i in range(1, length):
+                if answer < 0 and answer < nums[i]:
+                    answer = nums[i]
+                else:
+                    answer = answer+nums[i]
+                maxAnswer = max(answer, maxAnswer)
+                    
+        return maxAnswer   
