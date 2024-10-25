@@ -1,15 +1,13 @@
 class Solution:
     def maxSubArray(self, nums):
-        answer = nums[0]
-        maxAnswer = nums[0]
-        length = len(nums)
+        # 초기값 설정
+        maxAnswer = answer = nums[0]
 
-        if length >= 2:
-            for i in range(1, length):
-                if answer < 0 and answer < nums[i]:
-                    answer = nums[i]
-                else:
-                    answer = answer+nums[i]
-                maxAnswer = max(answer, maxAnswer)
+        # 첫 번째 요소 이후부터 시작
+        for i in range(1, len(nums)):
+            # answer를 현재 요소와 비교해 업데이트
+            answer = max(nums[i], answer + nums[i])
+            # 최대값 업데이트
+            maxAnswer = max(answer, maxAnswer)
                     
-        return maxAnswer   
+        return maxAnswer
